@@ -1,0 +1,9 @@
+{
+  "name": "אירוע הברית של ענבל ושלומי סימן טוב",
+  "integrations": {
+    "capacitor": {},
+    "cordova": {}
+  },
+  "type": "angular",
+  "id": "3c71a5c9"
+}

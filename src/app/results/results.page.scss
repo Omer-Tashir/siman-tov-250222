@@ -1,0 +1,25 @@
+.results {
+    
+    &__item {
+        padding: 3px;
+        
+        &:nth-child(odd) {
+            background-color: var(--ion-color-light);
+        }
+    }
+
+    &__title {
+        font-size: 1rem;
+        font-weight: bold;
+    }
+
+    &__text {
+        &--bold {
+            font-weight: bold;
+        }
+
+        &--fs-8 {
+            font-size: 0.8rem;
+        }
+    }
+}

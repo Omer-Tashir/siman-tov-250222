@@ -1,0 +1,40 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>סיכום אישורי ההגעה</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding-top">
+  <canvas baseChart 
+    [data]="pieChartData" 
+    [labels]="pieChartLabels" 
+    [chartType]="pieChartType"
+    [options]="pieChartOptions"
+    [plugins]="pieChartPlugins"
+    [colors]="pieChartColors"
+    [legend]="pieChartLegend"
+    (chartClick)="chartClicked($event)">
+  </canvas>
+
+  <p class="results__title ion-padding-horizontal ion-margin-vertical" @scaleIn>
+    <ion-text>{{activeLabel}} ({{activeCounter}})</ion-text>
+  </p>
+
+  <ion-grid class="ion-padding ion-margin-vertical" @listAnimation>
+    <ion-row class="results__item" *ngFor="let item of activeList" @items>
+      <ion-col class="results__text results__text--fs-8">
+        {{item.name}}
+      </ion-col>
+      <ion-col class="results__text results__text--fs-8 results__text--bold">
+        <ng-container *ngIf="item.isComming !== 'N'">
+          ({{item.participants}})
+        </ng-container>
+      </ion-col>
+      <!-- <ion-col class="results__text results__text--fs-8">
+        <ng-container *ngIf="!!item.transportation && !!item.transportationPoint">
+          מעוניינים בהסעה: {{item.transportationPoint}}
+        </ng-container>
+      </ion-col> -->
+    </ion-row>
+  </ion-grid>
+</ion-content>

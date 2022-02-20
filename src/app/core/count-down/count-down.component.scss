@@ -1,0 +1,19 @@
+:host {
+    display: block;
+    margin: 1.5rem;
+}
+
+.timer {
+    text-align: center;
+    font-size: 1rem;
+    font-weight: bold;
+
+    span {
+        font-size: 1.4rem;
+        margin-right: 10px;
+
+        &#in {
+            font-size: .8rem;
+        }
+    }
+}

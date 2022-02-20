@@ -1,0 +1,12 @@
+.navigation {
+    &__link {
+        cursor: pointer;
+        transition: all .3s ease;
+        font-size: 1.2rem;
+        font-weight: bold;
+
+        &:hover {
+            color: var(--ion-color-tertiary);
+        }
+    }
+}

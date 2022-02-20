@@ -1,0 +1,215 @@
+<ion-content [fullscreen]="true" class="content ion-text-center ion-padding">  
+
+  <ng-container *ngIf="homeTpl">
+
+    <div class="content" @homeItem>
+
+      <ion-img src="assets/logo.jpg" class="content__image ion-margin-vertical"></ion-img>
+    
+      <p class="content__text-line ion-padding-bottom" @scaleIn>
+        <ion-text color="tertiary" class="content__text-line--fs-18">נסיך קטן נולד!</ion-text>
+      </p>
+    
+      <p class="content__text-line content__text-line" @scaleIn>
+        <ion-text class="content__text-line--fs-10">אנו שמחים ונרגשים להזמין אתכם לחגוג עימנו את ברית בננו, שתערך אי״ה ביום שישי, כ״ד באדר א׳ תשפ״ב</ion-text>
+      </p>
+
+      <app-count-down class="content__text-line content__text-line--margin" @scaleIn></app-count-down>
+    
+      <p class="content__text-line content__text-line--margin" @scaleIn>
+        <ion-text class="content__text-line--fs-16">25.02.2022</ion-text>
+      </p>
+    
+      <ion-grid>
+        <ion-row @listAnimation>
+          <ion-col @items>
+            <div class="ion-text-center">
+              <h3>״אולמי פאר בראשית״</h3>
+              קהילת ציון 22, עפולה
+            </div>
+          </ion-col>
+          <ion-col @items>
+            <div class="ion-text-center">
+              <h3>12:00</h3>
+              קבלת פנים
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+
+      <p class="content__text-line ion-padding-top" @scaleIn>
+        <ion-text color="secondary" class="content__text-line--fs-12">נשמח בבואכם, ענבל ושלומי סימן טוב</ion-text>
+      </p>
+
+      <!-- <p class="content__text-line content__warning-message ion-padding" @scaleIn>
+        <ion-text color="danger" class="content__text-line--fs-8 ion-padding">הכניסה לאולם תתאפשר אך ורק בהצגת תו ירוק / תעודת מחלים בלבד או בדיקת קורונה שלילית בתוקף 48 שעות לפני האירוע.</ion-text>
+      </p> -->
+    
+      <ion-grid [formGroup]="form" novalidate>
+        <ion-row>
+          <ion-col>
+            <ion-list @listAnimation>
+              <ion-radio-group formControlName="isComming">
+                <ion-list-header class="ion-text-center ion-no-padding" @items>
+                  <ion-label class="content__text-line--fs-12">מתכוונים להגיע?</ion-label>
+                </ion-list-header>
+            
+                <div class="content__radio-group-items">
+                  <ion-item class="content__radio-group-item" color="success" @items>
+                    <ion-label color="light">כמובן!!!</ion-label>
+                    <ion-radio color="light" slot="start" value="Y"></ion-radio>
+                  </ion-item>
+  
+                  <ion-item class="content__radio-group-item" color="warning" @items>
+                    <ion-label color="light">עדיין מתלבטים</ion-label>
+                    <ion-radio color="light" slot="start" value="M"></ion-radio>
+                  </ion-item>
+              
+                  <ion-item class="content__radio-group-item" color="danger" @items>
+                    <ion-label color="light">לא נגיע</ion-label>
+                    <ion-radio color="light" slot="start" value="N"></ion-radio>
+                  </ion-item>
+                </div>
+
+              </ion-radio-group>
+            </ion-list>
+          </ion-col>
+        </ion-row>
+    
+        <ion-row class="ion-margin-top">
+          <ion-col>
+            <ion-item @scaleIn class="ion-no-padding">
+              <ion-label position="stacked">שם מלא</ion-label>
+              <ion-input formControlName="fullname" autocomplete="name" autocorrect="off" clearInput="true" debounce="100" inputmode="text" spellcheck="false"></ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+    
+        <ion-row class="ion-margin-top" *ngIf="isComing.value !== 'N'">
+          <ion-col>
+            <ion-item @scaleIn class="ion-no-padding">
+              <ion-label position="stacked">כמה אנשים תהיו?</ion-label>
+              <ion-input type="number" formControlName="participants" pattern="[0-9]*" min="0" max="15" step="1" inputmode="numeric"></ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+
+        <!-- <ion-row class="ion-margin-top" *ngIf="isComing.value !== 'N'">
+          <ion-col>
+            <ion-list lines="none" @listAnimation>
+              <ion-radio-group formControlName="transportation">
+                <ion-list-header class="ion-text-right ion-no-padding" @items>
+                  <ion-label class="content__text-line--fs-10 content__text-line--bold">מעוניינים בהסעה?</ion-label>
+                </ion-list-header>
+            
+                <div class="content__radio-group-items-flex">
+                  <ion-item lines="none" class="content__radio-group-item" @items>
+                    <ion-label>כן</ion-label>
+                    <ion-radio slot="start" [value]="true"></ion-radio>
+                  </ion-item>
+  
+                  <ion-item lines="none" class="content__radio-group-item" @items>
+                    <ion-label>לא</ion-label>
+                    <ion-radio slot="start" [value]="false"></ion-radio>
+                  </ion-item>
+                </div>
+
+              </ion-radio-group>
+            </ion-list>
+          </ion-col>
+        </ion-row>
+
+        <ion-row class="ion-margin-top" *ngIf="isComing.value !== 'N' && !!transportation.value">
+          <ion-col>
+            <p class="ion-text-right" @scaleIn>
+              <ion-text class="content__text-line--fs-10">לנוחיותכם יש הסעה הלוך וחזור. ההסעה תעבור בין הערים: תל אביב, חולון וראשל״צ.</ion-text>
+            </p>
+            <p class="ion-text-right" @scaleIn>
+              <ion-text class="content__text-line--fs-8"><strong>תל אביב</strong> - מגדל לוינשטיין - הלוך - יציאה ב-18:30</ion-text>
+              <br>
+              <ion-text class="content__text-line--fs-8"><strong>חולון</strong> - קניון חולון - הלוך - יציאה ב-19:00</ion-text>
+              <br>
+              <ion-text class="content__text-line--fs-8"><strong>ראשל״צ</strong> - בית ספר יגאל אלון - הלוך - יציאה ב-19:30</ion-text>
+              <br>
+              <ion-text class="content__text-line--fs-8">חזור - יציאה משוערת ב-00:30</ion-text>
+            </p>
+          </ion-col>
+        </ion-row>
+
+        <ion-row class="ion-margin-top" *ngIf="isComing.value !== 'N' && !!transportation.value">
+          <ion-col>
+            <ion-item @scaleIn class="ion-no-padding">
+              <ion-label position="stacked">נקודת איסוף</ion-label>
+              <ion-select formControlName="transportationPoint" okText="אישור" cancelText="סגור" placeholder="בחרו נקודת איסוף">
+                <ion-select-option value="תל אביב">תל אביב</ion-select-option>
+                <ion-select-option value="חולון">חולון</ion-select-option>
+                <ion-select-option value="ראשל״צ">ראשל״צ</ion-select-option>
+              </ion-select>
+            </ion-item>
+          </ion-col>
+        </ion-row> -->
+    
+        <ion-row class="ion-margin-top ion-padding-top">
+          <ion-col>
+            <ion-button class="content__text-line--fs-12" color="tertiary" expand="block" (click)="submit()" [disabled]="form.invalid" @scaleIn>שלח</ion-button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+
+  </ng-container>
+
+  <ng-container *ngIf="!homeTpl">
+
+    <div class="content content__flex-center" @homeItem>
+
+      <p class="content__text-line">
+        <ion-text color="tertiary" class="content__text-line--fs-20 ion-text-center ion-padding">תודה רבה על תשובתכם</ion-text>
+      </p>
+
+      <ng-container *ngIf="isComing.value === 'Y'">
+  
+        <p class="content__text-line">
+          <ion-text color="secondary" class="content__text-line--fs-16 ion-text-center ion-padding">מצפים לראותכם <span class="emoji">🤩🤩🤩</span></ion-text>
+        </p>
+
+        <app-google-waze-navigation></app-google-waze-navigation>
+
+      </ng-container>
+
+      <ng-container *ngIf="isComing.value === 'M'">
+  
+        <p class="content__text-line">
+          <ion-text color="secondary" class="content__text-line--fs-16 ion-text-center ion-padding">מחזיקים אצבעות שכן תוכלו להגיע <span class="emoji">🙏🙏🙏</span></ion-text>
+        </p>
+
+      </ng-container>
+
+      <ng-container *ngIf="isComing.value === 'N'">
+  
+        <p class="content__text-line">
+          <ion-text color="secondary" class="content__text-line--fs-16 ion-text-center ion-padding">נשמח לראות אתכם באירועים הבאים</ion-text>
+        </p>
+
+      </ng-container>
+
+      <ion-row class="ion-margin-top ion-padding-top">
+        <ion-col>
+
+          <p class="ion-margin">
+            אתם <span [ngClass]="{'comming' : isComing.value === 'Y', 'not-comming' : isComing.value === 'N', 'maybe-comming' : isComing.value === 'M'}">{{isComing.value === 'N' ? 'לא מגיעים' : isComing.value === 'Y' ? 'מגיעים' : 'אולי מגיעים'}}</span> לברית
+          </p>
+
+          <ion-button class="ion-margin" color="tertiary" expand="block" (click)="reset()">רוצים לשנות תשובה?</ion-button>
+
+        </ion-col>
+      </ion-row>
+    </div>
+
+  </ng-container>
+  
+</ion-content>
+
+<ion-footer class="footer ion-text-center ion-padding">
+  Powered by <ion-text color="tertiary"><a href="https://www.linkedin.com/in/omer-tashir" target="_blank" class="footer__link">Omer Tashir</a></ion-text>
+</ion-footer>
